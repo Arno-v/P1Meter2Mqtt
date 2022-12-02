@@ -24,10 +24,10 @@ If you bought a standard RJ12 telephone cable it will have two RJ11 connectors. 
 - (6) Blue
 
 There are also reverse connectors! You can check this by measuring the voltage between (1) and (6): (1) should be +5V.
-Connect 3.3 V of the ESP32 to (2).
-Connect 3.3 V of the ESP32 to One side of R1.
-Connect the other side of R1 to (5) and to RX02 of the ESP32.
-Connect (6) and (3) to the GND of the ESP32.
+- Connect 3.3 V of the ESP32 to (2).
+- Connect 3.3 V of the ESP32 to One side of R1.
+- Connect the other side of R1 to (5) and to RX02 of the ESP32.
+- Connect (6) and (3) to the GND of the ESP32.
 
 ## Software
 
