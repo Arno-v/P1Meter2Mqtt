@@ -2,7 +2,7 @@
 This software provides Smart Meter data from Dutch (and other countries) Energy meters to an MQTT broker. The data is provided by a Serial connector on the meter known as a P1 connector.
 
 ## About this Project
-I started this project because I wanted to supply this data to a homeassistant instance running on my FreeBSD server. I found one project from [bartwo] which uses an ESP32 which I happen to have, but it crashed. When looking at the code I decided to create my own because of all the issues I saw.
+I started this project because I wanted to supply this data to a homeassistant instance running on my FreeBSD server. I found one project from [bartwo](https://github.com/bartwo) which uses an ESP32 which I happen to have, but it crashed. When looking at the code I decided to create my own because of all the issues I saw.
 
 Full documentation of the P1 functionality can be found at: https://www.netbeheernederland.nl/_upload/Files/Slimme_meter_15_a727fce1f1.pdf
 
@@ -59,7 +59,7 @@ An mqtt.yaml file is added to assist in integration with homeassitant. Add it by
 
 ## Thanks to
 
-I would like to thank [bartwo] for the general idea.
+I would like to thank [bartwo](https://github.com/bartwo) for the general idea.
 
 
 
