@@ -15,7 +15,7 @@ Hardware is very simple:
 
 ## Hardwware Setup
 
-If you bought a standard RJ12 telephone cable it will have two RJ11 connectors. You wil have to cut it at the desired length. The colors of the wires are standardized:
+If you bought a standard RJ12 telephone cable it will have two RJ12 connectors. You wil have to cut it at the desired length. The colors of the wires are standardized:
 - (1) White
 - (2) Black
 - (3) Red
