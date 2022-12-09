@@ -13,7 +13,7 @@ Hardware is very simple:
 - An ESP32 development board. Mine was a DOIT.
 - A power supply. A Dutch Smart Meter has an own power supply for the P1, but it can only provide 250 mA. According to documentation the ESP32 can draw up to 750 mA peak. My board whould not boot with the P1 power supply.
 
-## Hardwware Setup
+## Hardware Setup
 
 If you bought a standard RJ12 telephone cable it will have two RJ12 connectors. You wil have to cut it at the desired length. The colors of the wires are standardized:
 - (1) White
