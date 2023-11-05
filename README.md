@@ -13,9 +13,9 @@ Hardware is very simple:
 - An ESP32 development board. Mine was a DOIT.
 - A power supply. A Dutch Smart Meter has an own power supply for the P1, but it can only provide 250 mA. According to documentation the ESP32 can draw up to 750 mA peak. My board whould not boot with the P1 power supply.
 
-## Hardwware Setup
+## Hardware Setup
 
-If you bought a standard RJ12 telephone cable it will have two RJ11 connectors. You wil have to cut it at the desired length. The colors of the wires are standardized:
+If you bought a standard RJ12 telephone cable it will have two RJ12 connectors. You wil have to cut it at the desired length. The colors of the wires are standardized:
 - (1) White
 - (2) Black
 - (3) Red
@@ -37,7 +37,7 @@ The settings.h contains some specific settings. You will have to adjust it for y
 ### Principle of operation
 
 The smart meter sends the data in sets called telegrams. The consist of a prefix, a set of datablocks and a postfix with a CRC16. The sofware reads an entire telegram in memory, checks the CRC and decodes the blocks.
-The blocks in the telegram are seperated by <CR><LF> . Each block starts with an identifier which identifies the metric and is followed by a value.
+The blocks in the telegram are seperated by CR LF . Each block starts with an identifier which identifies the metric and is followed by a value.
 
 A telegram is read by the TelegramReader class in TelegramReader.h. While reading the position of the blocks within the telegram is stored. 
 After a telegram has been read, all containing blocks are processed by the HandleBlock function in MeterDataDescriptors.ino
