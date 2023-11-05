@@ -3,27 +3,42 @@
 
 class HandleFloat:public IHandleValue
 {
+private:  
+    bool GetValueAndDecimalFromString(long &outvalue,long &decimalValue,char *value,const char *endpos)
+    {
+      auto dot=value+1;
+      while (dot<endpos && *dot!='.' && *dot!='*')
+        dot++;
+      if (*dot!='.' && *dot!='*')
+        return false;
+      auto oldChar=*dot;
+      *dot='\0';
+      outvalue=atol(value);
+      if (oldChar=='*') //No decimal point so decimalValue=0
+      {
+        decimalValue=0;
+        return true;
+      }
+      *dot=oldChar;
+      value=dot+1;
+      while (dot<endpos&&*dot!='*')
+        dot++;
+      if (*dot!='*')
+        return false;
+      oldChar=*dot;
+      *dot='\0';
+      decimalValue=atol(value);
+      return true;
+    }
 public:
     virtual void HandleValue(MeterDataDescriptor *pDesc,IBlock *block)
     {
       auto value=block->StartOfBlock()+pDesc->Length+ValueOffset();//+1 to skip the (.
       pDesc->ValueString=value;
       auto endpos=block->EndOfBlock();
-      auto dot=value+1;
-      while (dot<endpos&&*dot!='.')
-        dot++;
-      if (*dot!='.')
+      long lval,decimalValue;
+      if (!GetValueAndDecimalFromString(lval,decimalValue,value,endpos))
         return;
-      *dot='\0';
-      long lval=atol(value);
-      *dot='.'; 
-      value=dot+1;
-      while (dot<endpos&&*dot!='*')
-        dot++;
-      if (*dot!='*')
-        return;
-      *dot='\0';
-      long decimalValue=atol(value);
       if (lval!=pDesc->Value || decimalValue!=pDesc->DecimalValue)
       {
         pDesc->Value=lval;
@@ -73,7 +88,7 @@ class HandlekWClass:public HandleFloat
 class HandleVClass:public HandleFloat
 {
 };
-class HandleAClass:public HandleLong
+class HandleAClass:public HandleFloat
 {
 };
 class HandleM3Class:public HandleFloat
@@ -149,7 +164,7 @@ MeterDataDescriptor MeterDataDescriptors[]=
   {nullptr,"0-0:96.13.0",nullptr},
   {MQTT_ROOT_TOPIC"instant_voltage_l1","1-0:32.7.0",&HandleV},
   {MQTT_ROOT_TOPIC"instant_voltage_l2","1-0:52.7.0",&HandleV},
-  {MQTT_ROOT_TOPIC"instant_voltage_l3","1-0:72.7.0.",&HandleV},
+  {MQTT_ROOT_TOPIC"instant_voltage_l3","1-0:72.7.0",&HandleV},
   {MQTT_ROOT_TOPIC"instant_power_current_l1","1-0:31.7.0",&HandleA},
   {MQTT_ROOT_TOPIC"instant_power_current_l2","1-0:51.7.0",&HandleA},
   {MQTT_ROOT_TOPIC"instant_power_current_l3","1-0:71.7.0",&HandleA},
